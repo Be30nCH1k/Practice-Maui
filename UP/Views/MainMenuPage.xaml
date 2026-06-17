@@ -1,12 +1,49 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="UP.Views.MainMenuPage"
-             Title="MainMenuPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:Class="QuizOrDie.Views.MainMenuPage"
+             BackgroundColor="#0D0D1A"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="*,Auto,Auto,Auto,*" Padding="40">
+
+        <!-- Заголовок -->
+        <VerticalStackLayout Grid.Row="1" HorizontalOptions="Center">
+            <Label Text="QUIZ OR DIE"
+                   TextColor="#FF4444" FontSize="48" FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   CharacterSpacing="4"/>
+            <Label Text="Ответь правильно. Или пожалей."
+                   TextColor="#888888" FontSize="16"
+                   HorizontalTextAlignment="Center" Margin="0,8,0,0"/>
+        </VerticalStackLayout>
+
+        <!-- Кнопки -->
+        <VerticalStackLayout Grid.Row="2" Spacing="16" Margin="0,50,0,0">
+
+            <Button Text="▶  НАЧАТЬ ИГРУ"
+                    Command="{Binding StartQuizCommand}"
+                    BackgroundColor="#FF4444"
+                    TextColor="White"
+                    FontSize="20" FontAttributes="Bold"
+                    CornerRadius="12"
+                    HeightRequest="60"/>
+
+            <Button Text="АЧИВКИ"
+                    Command="{Binding OpenAchievementsCommand}"
+                    BackgroundColor="#1E1E2E"
+                    TextColor="#AAAAAA"
+                    FontSize="16"
+                    CornerRadius="12"
+                    BorderColor="#333355" BorderWidth="1"
+                    HeightRequest="50"/>
+        </VerticalStackLayout>
+
+        <Label Grid.Row="4"
+               Text="v1.0 — QuizOrDie"
+               TextColor="#333355"
+               FontSize="12"
+               HorizontalTextAlignment="Center"
+               VerticalOptions="End"/>
+    </Grid>
 </ContentPage>
