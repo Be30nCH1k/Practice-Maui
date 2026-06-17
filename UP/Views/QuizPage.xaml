@@ -1,12 +1,156 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="UP.Views.QuizPage"
-             Title="QuizPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:views="clr-namespace:QuizOrDie.Views"
+             x:Class="QuizOrDie.Views.QuizPage"
+             BackgroundColor="#0D0D1A"
+             Shell.NavBarIsVisible="False">
+
+    <!-- корневой grid основной UI + оверлеи поверх -->
+    <Grid>
+
+        <!-- основной UI викторины -->
+        <Grid x:Name="MainContent"
+              RowDefinitions="Auto,Auto,*,Auto"
+              Padding="20">
+
+            <!-- cчёт, категория, таймер -->
+            <Grid Grid.Row="0" ColumnDefinitions="*,Auto,*" Margin="0,0,0,16">
+                <Label Grid.Column="0"
+                       Text="{Binding Score, StringFormat='⭐ {0}'}"
+                       TextColor="#FFDD44" FontSize="18" FontAttributes="Bold"/>
+
+                <!-- таймер -->
+                <Border Grid.Column="1"
+                        BackgroundColor="#1E1E2E"
+                        StrokeShape="RoundRectangle 20"
+                        Padding="14,6">
+                    <Label Text="{Binding TimerSeconds}"
+                           TextColor="#FF4444" FontSize="22" FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"/>
+                </Border>
+
+                <Label Grid.Column="2"
+                       Text="{Binding QuestionNumber, StringFormat='Вопрос {0}'}"
+                       TextColor="#888888" FontSize="14"
+                       HorizontalTextAlignment="End"
+                       VerticalTextAlignment="Center"/>
+            </Grid>
+
+            <!-- категория -->
+            <Label Grid.Row="1"
+                   Text="{Binding Category}"
+                   TextColor="White" FontSize="20"
+                   Margin="0,0,0,20"
+                   HorizontalTextAlignment="Center"/>
+
+            <!-- текст вопроса -->
+            <Border Grid.Row="2"
+                    BackgroundColor="#1A1A2E"
+                    StrokeShape="RoundRectangle 16"
+                    Padding="24"
+                    VerticalOptions="Center">
+                <Label Text="{Binding QuestionText}"
+                       TextColor="White" FontSize="22"
+                       HorizontalTextAlignment="Center"
+                       LineBreakMode="WordWrap"/>
+            </Border>
+
+            <!-- варианты ответов -->
+            <VerticalStackLayout Grid.Row="3" Spacing="12" Margin="0,20,0,0">
+
+                <Button Text="{Binding Options[0]}"
+                        Command="{Binding AnswerCommand}"
+                        CommandParameter="{Binding Options[0]}"
+                        Style="{StaticResource AnswerButtonStyle}"/>
+
+                <Button Text="{Binding Options[1]}"
+                        Command="{Binding AnswerCommand}"
+                        CommandParameter="{Binding Options[1]}"
+                        Style="{StaticResource AnswerButtonStyle}"/>
+
+                <Button Text="{Binding Options[2]}"
+                        Command="{Binding AnswerCommand}"
+                        CommandParameter="{Binding Options[2]}"
+                        Style="{StaticResource AnswerButtonStyle}"/>
+
+                <Button Text="{Binding Options[3]}"
+                        Command="{Binding AnswerCommand}"
+                        CommandParameter="{Binding Options[3]}"
+                        Style="{StaticResource AnswerButtonStyle}"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- краш -->
+        <views:CrashOverlay x:Name="CrashOverlayView"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill"/>
+
+        <!-- награда -->
+        <Grid x:Name="RewardOverlay"
+              IsVisible="False"
+              BackgroundColor="#CC000000"
+              HorizontalOptions="Fill"
+              VerticalOptions="Fill">
+            <Border BackgroundColor="#1E1E2E"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="32"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    MaximumWidthRequest="400">
+                <VerticalStackLayout Spacing="20">
+                    <Label Text="ПРАВИЛЬНО!"
+                           TextColor="#44FF88" FontSize="24" FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"/>
+                    <Label x:Name="RewardLabel"
+                           TextColor="White" FontSize="18"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap"/>
+                    <Button Text="ПРОДОЛЖИТЬ →"
+                            x:Name="ContinueBtn"
+                            BackgroundColor="#44FF88"
+                            TextColor="#0D0D1A"
+                            FontAttributes="Bold"
+                            CornerRadius="10"
+                            HeightRequest="48"
+                            Clicked="OnContinueClicked"/>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+        <!-- конец игры -->
+        <Grid x:Name="GameOverOverlay"
+              IsVisible="False"
+              BackgroundColor="#EE0D0D1A"
+              HorizontalOptions="Fill"
+              VerticalOptions="Fill">
+            <Border BackgroundColor="#1E1E2E"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="32"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    MaximumWidthRequest="400">
+                <VerticalStackLayout Spacing="16">
+                    <Label x:Name="GameOverTitle"
+                           TextColor="White" FontSize="28" FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"/>
+                    <Label x:Name="GameOverScore"
+                           TextColor="#FFDD44" FontSize="20"
+                           HorizontalTextAlignment="Center"/>
+                    <Button Text="ИГРАТЬ СНОВА"
+                            Clicked="OnRestartClicked"
+                            BackgroundColor="#FF4444"
+                            TextColor="White" FontAttributes="Bold"
+                            CornerRadius="10" HeightRequest="50"/>
+                    <Button Text="В МЕНЮ"
+                            Clicked="OnMenuClicked"
+                            BackgroundColor="#1A1A2E"
+                            TextColor="#AAAAAA"
+                            BorderColor="#333355" BorderWidth="1"
+                            CornerRadius="10" HeightRequest="44"/>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+    </Grid>
 </ContentPage>
