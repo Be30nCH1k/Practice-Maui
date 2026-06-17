@@ -1,12 +1,64 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="UP.Views.AchievementsPage"
-             Title="AchievementsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:models="clr-namespace:QuizOrDie.Models"
+             x:Class="QuizOrDie.Views.AchievementsPage"
+             BackgroundColor="#0D0D1A"
+             Title="Ачивки">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20">
+
+        <!-- заголовок -->
+        <VerticalStackLayout Grid.Row="0" Margin="0,0,0,20">
+            <Label Text="🏆 КОЛЛЕКЦИЯ АЧИВОК"
+                   TextColor="White" FontSize="24" FontAttributes="Bold"/>
+            <Label Text="{Binding UnlockedCount, StringFormat='Открыто: {0}'}"
+                   TextColor="#888888" FontSize="14"
+                   Margin="0,4,0,0"/>
+        </VerticalStackLayout>
+
+        <!-- список ачивок -->
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Achievements}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Achievement">
+                    <Border Margin="0,0,0,12"
+                            BackgroundColor="{Binding IsUnlocked,
+                                Converter={StaticResource BoolToColorConverter},
+                                ConverterParameter='#1E1E2E|#111122'}"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="16">
+                        <Grid ColumnDefinitions="60,*">
+                            <!-- эмодзи -->
+                            <Label Grid.Column="0"
+                                   Text="{Binding Emoji}"
+                                   FontSize="40"
+                                   Opacity="{Binding IsUnlocked, Converter={StaticResource BoolToOpacityConverter}}"/>
+                            <!-- текст -->
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="{Binding Title}"
+                                       TextColor="White" FontSize="16" FontAttributes="Bold"
+                                       Opacity="{Binding IsUnlocked, Converter={StaticResource BoolToOpacityConverter}}"/>
+                                <Label Text="{Binding Description}"
+                                       TextColor="#888888" FontSize="13"/>
+                                <Label Text="🔒 Заблокировано"
+                                       TextColor="#444466" FontSize="12"
+                                       IsVisible="{Binding IsUnlocked, Converter={StaticResource InverseBoolConverter}}"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- кнопка назад -->
+        <Button Grid.Row="2"
+                Text="← НАЗАД"
+                Clicked="OnBackClicked"
+                BackgroundColor="#1E1E2E"
+                TextColor="#AAAAAA"
+                BorderColor="#333355" BorderWidth="1"
+                CornerRadius="10" HeightRequest="48"
+                Margin="0,12,0,0"/>
+    </Grid>
 </ContentPage>
