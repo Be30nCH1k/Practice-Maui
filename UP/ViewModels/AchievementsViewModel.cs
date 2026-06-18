@@ -1,10 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using QuizOrDie.Models;
+using QuizOrDie.Services;
+using UP.Models;
+using UP.Services;
+using UP.ViewModels;
 
-namespace UP.ViewModels
+namespace QuizOrDie.ViewModels;
+
+public class AchievementsViewModel : BaseViewModel
 {
-    internal class AchievementsViewModel
+    private readonly AchievementService _service;
+
+    private List<Achievement> _achievements = new();
+    public List<Achievement> Achievements
     {
+        get => _achievements;
+        set => SetField(ref _achievements, value);
+    }
+
+    public int UnlockedCount => Achievements.Count(a => a.IsUnlocked);
+    public int TotalCount => Achievements.Count;
+
+    public AchievementsViewModel(AchievementService service)
+    {
+        _service = service;
+        Refresh();
+    }
+
+    public void Refresh()
+    {
+        Achievements = _service.GetAll();
+        OnPropertyChanged(nameof(UnlockedCount));
+        OnPropertyChanged(nameof(TotalCount));
     }
 }
