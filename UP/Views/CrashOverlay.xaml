@@ -53,9 +53,6 @@
                    Aspect="AspectFill"
                    HorizontalOptions="Fill"
                    VerticalOptions="Fill"/>
-            <Label Text="💥 ОЙ..."
-                   TextColor="White" FontSize="40"
-                   HorizontalOptions="Center" VerticalOptions="Center"/>
         </Grid>
 
         <!-- краш 4 хакерская атака -->
