@@ -5,7 +5,14 @@
              x:Class="QuizOrDie.App">
     <Application.Resources>
         <ResourceDictionary>
+            <!-- глобальный шрифт -->
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="Oswald"/>
+            </Style>
 
+            <Style TargetType="Button">
+                <Setter Property="FontFamily" Value="Oswald"/>
+            </Style>
             <!-- глобальные конверторы -->
             <converters:BoolToColorConverter   x:Key="BoolToColorConverter"/>
             <converters:BoolToOpacityConverter x:Key="BoolToOpacityConverter"/>

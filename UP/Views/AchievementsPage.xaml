@@ -10,7 +10,7 @@
 
         <!-- заголовок -->
         <VerticalStackLayout Grid.Row="0" Margin="0,0,0,20">
-            <Label Text="🏆 КОЛЛЕКЦИЯ АЧИВОК"
+            <Label Text="КОЛЛЕКЦИЯ АЧИВОК"
                    TextColor="White" FontSize="24" FontAttributes="Bold"/>
             <Label Text="{Binding UnlockedCount, StringFormat='Открыто: {0}'}"
                    TextColor="#888888" FontSize="14"

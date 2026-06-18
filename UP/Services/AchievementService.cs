@@ -1,50 +1,51 @@
 ﻿using QuizOrDie.Models;
-using QuizOrDie.Services;
 using UP.Models;
-using UP.ViewModels;
 
-namespace QuizOrDie.ViewModels;
+namespace QuizOrDie.Services;
 
-/* модель представления для экрана достижений
-управляет данными о полученных и заблокированных наградах пользователя */
-
-public class AchievementsViewModel : BaseViewModel
+// хранит и выдаёт ачивки
+public class AchievementService
 {
-    private readonly AchievementService _service;
-
-    // закрытое поле для хранения списка достижений
-    private List<Achievement> _achievements = new();
-
-
-    /* список всех достижений для отображения в интерфейсе.
-    при обновлении списка автоматически уведомляет View */
-
-    public List<Achievement> Achievements
+    // список всех возможных ачивок
+    private static readonly List<Achievement> Catalog = new()
     {
-        get => _achievements;
-        set => SetField(ref _achievements, value);
+        new() { Id = "first_blood",    Title = "Первая кровь",      Emoji = "🩸", Description = "Ответь правильно впервые" },
+        new() { Id = "brain_on_fire",  Title = "Мозг в ударе",      Emoji = "🧠", Description = "3 правильных подряд" },
+        new() { Id = "survived",       Title = "Выживший",           Emoji = "💀", Description = "Получи фейк-краш и продолжи" },
+        new() { Id = "erudite",        Title = "Эрудит-террорист",   Emoji = "💣", Description = "Пройди раунд без ошибок" },
+        new() { Id = "diplomat",       Title = "Дипломат",           Emoji = "🎖️", Description = "Ответь на 50 вопросов суммарно" },
+        new() { Id = "genius",         Title = "Да ты боженька",     Emoji = "⚡", Description = "10 правильных в одной сессии" },
+    };
+
+    // публичные методы
+
+    public List<Achievement> GetAll()
+    {
+        return Catalog.Select(a =>
+        {
+            a.IsUnlocked = Preferences.Get($"ach_{a.Id}", false);
+            return a;
+        }).ToList();
     }
 
-    // количество разблокированных достижений
-    public int UnlockedCount => Achievements.Count(a => a.IsUnlocked);
-
-    // общее количество существующих достижений в игре
-    public int TotalCount => Achievements.Count;
-
-    // конструктор класса инициализирует сервис и загружает первичные данные
-    public AchievementsViewModel(AchievementService service)
+    // разблокировать ачивку по Id
+    public bool Unlock(string achievementId)
     {
-        _service = service;
-        Refresh();
+        var key = $"ach_{achievementId}";
+        if (Preferences.Get(key, false)) return false; // уже была
+
+        Preferences.Set(key, true);
+        return true;
     }
 
-    /* обновляет список достижений из сервиса
-    и принудительно уведомляет интерфейс об изменении счетчиков */
-    public void Refresh()
+    public void ResetAll()
     {
-        Achievements = _service.GetAll();
-
-        OnPropertyChanged(nameof(UnlockedCount));
-        OnPropertyChanged(nameof(TotalCount));
+        foreach (var a in Catalog)
+            Preferences.Remove($"ach_{a.Id}");
     }
+
+    //статистика для проверки условий 
+
+    public int GetTotalCorrect() => Preferences.Get("stat_total_correct", 0);
+    public void AddCorrect(int n = 1) => Preferences.Set("stat_total_correct", GetTotalCorrect() + n);
 }
