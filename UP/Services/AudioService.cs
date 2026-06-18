@@ -1,4 +1,4 @@
-﻿namespace QuizOrDie.Services;
+﻿namespace UP.Services;
 
 // на платформах без звука молча пропускает
 public class AudioService

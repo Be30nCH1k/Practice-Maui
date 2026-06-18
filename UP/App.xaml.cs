@@ -1,6 +1,6 @@
 ﻿using UP;
 
-namespace QuizOrDie;
+namespace UP;
 
 public partial class App : Application
 {

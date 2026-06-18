@@ -1,7 +1,6 @@
-﻿using QuizOrDie.Models;
-using UP.Models;
+﻿using UP.Models;
 
-namespace QuizOrDie.Services;
+namespace UP.Services;
 
 // хранит и выдаёт ачивки
 public class AchievementService

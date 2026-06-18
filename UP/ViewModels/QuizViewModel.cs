@@ -1,8 +1,8 @@
 ﻿using System.Windows.Input;
-using QuizOrDie.Models;
-using QuizOrDie.Services;
+using UP.Models;
+using UP.Services;
 
-namespace QuizOrDie.ViewModels;
+namespace UP.ViewModels;
 
 /// главная логика викторины
 public class QuizViewModel : BaseViewModel

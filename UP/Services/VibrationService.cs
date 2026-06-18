@@ -1,4 +1,4 @@
-﻿namespace QuizOrDie.Services;
+﻿namespace UP.Services;
 
 // обертка над вибрацией
 public static class VibrationService

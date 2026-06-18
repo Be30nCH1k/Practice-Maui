@@ -1,8 +1,6 @@
-using QuizOrDie.ViewModels;
 using UP.ViewModels;
-using UP.Views;
 
-namespace QuizOrDie.Views;
+namespace UP.Views;
 
 public partial class QuizPage : ContentPage
 {

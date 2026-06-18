@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace QuizOrDie.ViewModels;
+namespace UP.ViewModels;
 
 public abstract class BaseViewModel : INotifyPropertyChanged
 {

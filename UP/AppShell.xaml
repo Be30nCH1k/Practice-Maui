@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:views="clr-namespace:QuizOrDie.Views"
-       x:Class="QuizOrDie.AppShell"
-       Shell.NavBarIsVisible="False">
+       xmlns:views="clr-namespace:UP.Views"
+       x:Class="UP.AppShell"
+       Shell.NavBarIsVisible="False"
+       FlyoutBehavior="Disabled">
 
     <ShellContent Route="MainMenu"
                   ContentTemplate="{DataTemplate views:MainMenuPage}"/>

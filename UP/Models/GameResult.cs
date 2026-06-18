@@ -1,4 +1,4 @@
-﻿namespace QuizOrDie.Models;
+﻿namespace UP.Models;
 
 /// результат одной игровой сессии (передаётся между ViewModel и View).
 
