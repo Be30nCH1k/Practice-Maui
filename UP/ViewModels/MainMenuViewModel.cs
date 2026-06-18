@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Windows.Input;
 
-namespace UP.ViewModels
+namespace QuizOrDie.ViewModels;
+
+public class MainMenuViewModel : BaseViewModel
 {
-    internal class MainMenuViewModel
+    public ICommand StartQuizCommand { get; }
+    public ICommand OpenAchievementsCommand { get; }
+
+    public MainMenuViewModel()
     {
+        StartQuizCommand = new Command(async () => await Shell.Current.GoToAsync("//QuizPage"));
+        OpenAchievementsCommand = new Command(async () => await Shell.Current.GoToAsync("//AchievementsPage"));
     }
 }
