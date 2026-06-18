@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace QuizOrDie.Converters; 
+namespace UP.Converters; 
 // true первый цвет в параметре
 // false второй цвет
 public class BoolToColorConverter : IValueConverter

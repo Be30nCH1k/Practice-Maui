@@ -1,6 +1,6 @@
 using UP.ViewModels;
 
-namespace QuizOrDie.Views;
+namespace UP.Views;
 
 public partial class AchievementsPage : ContentPage
 {

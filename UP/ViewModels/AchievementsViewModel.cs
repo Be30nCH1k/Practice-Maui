@@ -1,10 +1,7 @@
-﻿using QuizOrDie.Models;
-using QuizOrDie.Services;
-using UP.Models;
+﻿using UP.Models;
 using UP.Services;
-using UP.ViewModels;
 
-namespace QuizOrDie.ViewModels;
+namespace UP.ViewModels;
 
 public class AchievementsViewModel : BaseViewModel
 {

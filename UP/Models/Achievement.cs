@@ -1,4 +1,4 @@
-﻿namespace QuizOrDie.Models;
+﻿namespace UP.Models;
 
 // получение ачивки
 

@@ -1,8 +1,7 @@
-﻿using QuizOrDie.Models;
+﻿using UP.Models;
 using System.Text.Json;
-using UP.Models;
 
-namespace QuizOrDie.Services;
+namespace UP.Services;
 
 /* будет загружать вопросы из questions.json
 перемешивает и раздаёт по одному */

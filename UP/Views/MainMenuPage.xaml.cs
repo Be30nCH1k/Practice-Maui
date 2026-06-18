@@ -1,12 +1,12 @@
 using UP.ViewModels;
 
-namespace QuizOrDie.Views;
+namespace UP.Views;
 
 public partial class MainMenuPage : ContentPage
 {
-    public MainMenuPage()
+    public MainMenuPage(MainMenuViewModel vm)
     {
         InitializeComponent();
-        
+        BindingContext = vm;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace QuizOrDie.ViewModels;
+namespace UP.ViewModels;
 
 public class MainMenuViewModel : BaseViewModel
 {

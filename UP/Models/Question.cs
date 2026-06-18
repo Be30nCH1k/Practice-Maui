@@ -1,4 +1,4 @@
-﻿namespace QuizOrDie.Models;
+﻿namespace UP.Models;
 
 /// Один вопрос викторины. берётся из questions.json.
 
