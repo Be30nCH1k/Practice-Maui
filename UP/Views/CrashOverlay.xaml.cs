@@ -52,7 +52,7 @@ public partial class CrashOverlay : ContentView
     {
         CrashBSOD.IsVisible = true;
         await Task.Delay(3500);
-        BsodHintLabel.Text = "Шучу. Ты просто лох. Смахни вверх.";
+        BsodHintLabel.Text = "Шучу. Ты просто ЛОХ.";
         await Task.Delay(2000);
     }
 

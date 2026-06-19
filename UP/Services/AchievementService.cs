@@ -9,7 +9,7 @@ public class AchievementService
     private static readonly List<Achievement> Catalog = new()
     {
         new() { Id = "first_blood",    Title = "Первая кровь",      Emoji = "🩸", Description = "Ответь правильно впервые" },
-        new() { Id = "brain_on_fire",  Title = "Мозг в ударе",      Emoji = "🧠", Description = "3 правильных подряд" },
+        new() { Id = "brain_on_fire",  Title = "Мозг в работе",      Emoji = "🧠", Description = "3 правильных подряд" },
         new() { Id = "survived",       Title = "Выживший",           Emoji = "💀", Description = "Получи фейк-краш и продолжи" },
         new() { Id = "erudite",        Title = "Эрудит-террорист",   Emoji = "💣", Description = "Пройди раунд без ошибок" },
         new() { Id = "diplomat",       Title = "Дипломат",           Emoji = "🎖️", Description = "Ответь на 50 вопросов суммарно" },
